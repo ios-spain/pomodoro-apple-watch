@@ -5,6 +5,36 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "52C2B49D1DECD142001089AE"
+               BuildableName = "pomodoro WatchKit App.app"
+               BlueprintName = "pomodoro WatchKit App"
+               ReferencedContainer = "container:pomodoro.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "52C2B4751DECD142001089AE"
+               BuildableName = "pomodoro.app"
+               BlueprintName = "pomodoro"
+               ReferencedContainer = "container:pomodoro.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -13,6 +43,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "52C2B49D1DECD142001089AE"
+            BuildableName = "pomodoro WatchKit App.app"
+            BlueprintName = "pomodoro WatchKit App"
+            ReferencedContainer = "container:pomodoro.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -26,6 +65,27 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.carousel"
+         RemotePath = "/pomodoro WatchKit App">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "52C2B49D1DECD142001089AE"
+            BuildableName = "pomodoro WatchKit App.app"
+            BlueprintName = "pomodoro WatchKit App"
+            ReferencedContainer = "container:pomodoro.xcodeproj">
+         </BuildableReference>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "52C2B49D1DECD142001089AE"
+            BuildableName = "pomodoro WatchKit App.app"
+            BlueprintName = "pomodoro WatchKit App"
+            ReferencedContainer = "container:pomodoro.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -35,6 +95,27 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.carousel"
+         RemotePath = "/pomodoro WatchKit App">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "52C2B49D1DECD142001089AE"
+            BuildableName = "pomodoro WatchKit App.app"
+            BlueprintName = "pomodoro WatchKit App"
+            ReferencedContainer = "container:pomodoro.xcodeproj">
+         </BuildableReference>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "52C2B49D1DECD142001089AE"
+            BuildableName = "pomodoro WatchKit App.app"
+            BlueprintName = "pomodoro WatchKit App"
+            ReferencedContainer = "container:pomodoro.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
