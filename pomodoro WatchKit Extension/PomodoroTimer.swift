@@ -13,7 +13,7 @@ class PomodoroTimer: NSObject {
     enum timerStates: Int {
         case play = 0, stop, pause
     }
-    var currentState: timerStates
+    var currentState: timerStates = timerStates.stop
     var timer: WKInterfaceTimer!
     var realTimer = Timer()
     var startTime = Date()
@@ -21,7 +21,9 @@ class PomodoroTimer: NSObject {
     var duration = 0.0
     
     override init() {
-        currentState = timerStates.stop
+        super.init()
+        //currentState = timerStates.stop
+        //Timer.scheduledTimer(timeInterval: 0, target: self, selector: #selector(countDownDone), userInfo: nil, repeats: false)
     }
     //Getters
     func isInThisState(state: timerStates) -> Bool  {
@@ -38,6 +40,7 @@ class PomodoroTimer: NSObject {
     }
     
     //Setters
+    //WKInterfaceTimer
     func setInterfaceTimer(timer: WKInterfaceTimer, seconds: Double) {
         self.timer = timer
         initTimer(seconds: seconds)
@@ -47,31 +50,53 @@ class PomodoroTimer: NSObject {
         duration = seconds
         elapsedTime = 0
     }
+    //realTimer
+    func stopRealTimer() {
+        self.realTimer.invalidate()
+    }
+    func stopAndThenStartRealTimer(seconds:Double){
+        self.stopRealTimer()
+        self.realTimer = Timer.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(countDownDone), userInfo: nil, repeats: false)
+    }
+    //Common functions
     func play(seconds:Double) {
         print("play")
         startTime = Date()
         initTimer(seconds: seconds)
         self.timer.start()
         self.currentState = timerStates.play
+        stopAndThenStartRealTimer(seconds: seconds)
     }
     func pause() {
         print("pause")
         elapsedTime += Date().timeIntervalSince(startTime)
         self.timer.stop()
+        self.stopRealTimer()
         self.currentState = timerStates.pause
     }
     func resume() {
         print("resume")
         startTime = Date()
+        stopAndThenStartRealTimer(seconds: duration-elapsedTime)
         self.timer.setDate(Date(timeIntervalSinceNow: (duration-elapsedTime) ))
         self.timer.start()
         self.currentState = timerStates.play
     }
     func stop() {
+        //Called from menu reset
         print("stop")
         self.timer.stop()
+        stopRealTimer()
         self.currentState = timerStates.stop
         //Init WKInterfaceTimer with the last duration used
         initTimer(seconds: duration)
+    }
+    
+    //RING RING 
+    func countDownDone() {
+        //Automatically stopped in the final countdown
+        print("RING RING !! \(elapsedTime)")
+        self.stop()
+        WKInterfaceDevice.current().play(.click)
     }
 }
