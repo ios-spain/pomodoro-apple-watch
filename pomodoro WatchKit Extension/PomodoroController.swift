@@ -14,7 +14,7 @@ import Foundation
 class PomodoroController: WKInterfaceController {
     @IBOutlet var timer: WKInterfaceTimer!
     @IBOutlet var btnTimer: WKInterfaceLabel!
-    
+    @IBOutlet var goupCircle: WKInterfaceGroup!
     
     var pomodoro = PomodoroTimer()
     
@@ -45,6 +45,23 @@ class PomodoroController: WKInterfaceController {
             //Lets pause
             pomodoro.pause()
             btnTimer.setText("Resume")
+            
+            
+            // 1
+            let duration = self.pomodoroInSecondsTime
+            let delay = DispatchTime.now(dispatch_time_t(DISPATCH_TIME_NOW), Int64((duration + 0.15) * Double(NSEC_PER_SEC)))
+            // 2
+            goupCircle.setBackgroundImageNamed("Progress")
+            // 3
+            goupCircle.startAnimatingWithImagesInRange(NSRange(location: 0, length: 10), duration: duration, repeatCount: 1)
+            // 4
+            dispatch_after(delay, dispatch_get_main_queue()) { () -> Void in
+                // 5
+                self.flight?.checkedIn = true
+                self.dismissController()
+            }
+            
+            
             
         } else if(pomodoro.isPause()) {
             //Lets resume

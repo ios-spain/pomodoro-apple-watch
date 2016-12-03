@@ -14,7 +14,7 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="PomodoroController" customModule="pomodoro_WatchKit_Extension">
                     <items>
-                        <group width="1" height="133" alignment="left" layout="vertical" id="j3i-oQ-bRh">
+                        <group width="1" height="133" alignment="left" backgroundImage="single-99suffix" layout="vertical" id="j3i-oQ-bRh">
                             <items>
                                 <timer alignment="center" verticalAlignment="center" previewedSeconds="1500" id="7Wy-fd-XdD">
                                     <fontDescription key="font" type="system" pointSize="35"/>
@@ -32,6 +32,7 @@
                                         <action selector="onTimerButton" destination="AgC-eL-Hgc" id="nCu-eT-SMD"/>
                                     </connections>
                                 </button>
+                                <group width="1" height="23" alignment="left" verticalAlignment="bottom" id="cjJ-zL-Vev"/>
                             </items>
                         </group>
                     </items>
@@ -46,6 +47,7 @@
                     </menu>
                     <connections>
                         <outlet property="btnTimer" destination="lZm-O8-qsM" id="4PZ-Hk-NHf"/>
+                        <outlet property="goupCircle" destination="j3i-oQ-bRh" id="zjE-RA-ZaM"/>
                         <outlet property="timer" destination="7Wy-fd-XdD" id="KcG-k1-FsZ"/>
                     </connections>
                 </controller>
