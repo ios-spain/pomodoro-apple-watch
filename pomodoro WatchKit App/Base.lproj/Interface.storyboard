@@ -32,7 +32,7 @@
                                         <action selector="onTimerButton" destination="AgC-eL-Hgc" id="nCu-eT-SMD"/>
                                     </connections>
                                 </button>
-                                <group width="1" height="23" alignment="left" verticalAlignment="bottom" id="cjJ-zL-Vev"/>
+                                <group width="1" height="28" alignment="left" verticalAlignment="bottom" id="cjJ-zL-Vev"/>
                             </items>
                         </group>
                     </items>
@@ -47,7 +47,7 @@
                     </menu>
                     <connections>
                         <outlet property="btnTimer" destination="lZm-O8-qsM" id="4PZ-Hk-NHf"/>
-                        <outlet property="goupCircle" destination="j3i-oQ-bRh" id="zjE-RA-ZaM"/>
+                        <outlet property="groupCircle" destination="j3i-oQ-bRh" id="0hb-Wt-43A"/>
                         <outlet property="timer" destination="7Wy-fd-XdD" id="KcG-k1-FsZ"/>
                     </connections>
                 </controller>

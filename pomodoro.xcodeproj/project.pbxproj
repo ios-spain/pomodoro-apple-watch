@@ -109,6 +109,7 @@
 		5290C8551DF275BD00BE3F72 /* circle-98.png in Resources */ = {isa = PBXBuildFile; fileRef = 5290C7F01DF275BD00BE3F72 /* circle-98.png */; };
 		5290C8561DF275BD00BE3F72 /* circle-99.png in Resources */ = {isa = PBXBuildFile; fileRef = 5290C7F11DF275BD00BE3F72 /* circle-99.png */; };
 		5290C8571DF275BD00BE3F72 /* circle-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 5290C7F21DF275BD00BE3F72 /* circle-100.png */; };
+		5290C85B1DF2DCD900BE3F72 /* PomodoroInterfaceGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5290C85A1DF2DCD900BE3F72 /* PomodoroInterfaceGroup.swift */; };
 		52C2B47A1DECD142001089AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C2B4791DECD142001089AE /* AppDelegate.swift */; };
 		52C2B47C1DECD142001089AE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C2B47B1DECD142001089AE /* ViewController.swift */; };
 		52C2B47F1DECD142001089AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C2B47D1DECD142001089AE /* Main.storyboard */; };
@@ -285,6 +286,7 @@
 		5290C7F01DF275BD00BE3F72 /* circle-98.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle-98.png"; sourceTree = "<group>"; };
 		5290C7F11DF275BD00BE3F72 /* circle-99.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle-99.png"; sourceTree = "<group>"; };
 		5290C7F21DF275BD00BE3F72 /* circle-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle-100.png"; sourceTree = "<group>"; };
+		5290C85A1DF2DCD900BE3F72 /* PomodoroInterfaceGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroInterfaceGroup.swift; sourceTree = "<group>"; };
 		52C2B4761DECD142001089AE /* pomodoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pomodoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52C2B4791DECD142001089AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52C2B47B1DECD142001089AE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -536,6 +538,7 @@
 				52C2B4BC1DECD143001089AE /* Info.plist */,
 				52C2B4B21DECD143001089AE /* Supporting Files */,
 				5290C78C1DF250AB00BE3F72 /* PomodoroTimer.swift */,
+				5290C85A1DF2DCD900BE3F72 /* PomodoroInterfaceGroup.swift */,
 			);
 			path = "pomodoro WatchKit Extension";
 			sourceTree = "<group>";
@@ -873,6 +876,7 @@
 			files = (
 				52C2B4B91DECD143001089AE /* NotificationController.swift in Sources */,
 				52C2B4B71DECD143001089AE /* ExtensionDelegate.swift in Sources */,
+				5290C85B1DF2DCD900BE3F72 /* PomodoroInterfaceGroup.swift in Sources */,
 				5290C78D1DF250AB00BE3F72 /* PomodoroTimer.swift in Sources */,
 				52C2B4B51DECD143001089AE /* PomodoroController.swift in Sources */,
 			);

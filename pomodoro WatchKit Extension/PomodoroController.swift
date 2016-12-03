@@ -14,9 +14,10 @@ import Foundation
 class PomodoroController: WKInterfaceController {
     @IBOutlet var timer: WKInterfaceTimer!
     @IBOutlet var btnTimer: WKInterfaceLabel!
-    @IBOutlet var goupCircle: WKInterfaceGroup!
+    @IBOutlet var groupCircle: WKInterfaceGroup!
     
     var pomodoro = PomodoroTimer()
+    var background = PomodoroInterfaceGroup()
     
     //let pomodoroInSecondsTime = TimeInterval(25*60+1)
     let pomodoroInSecondsTime: TimeInterval = 15
@@ -24,9 +25,10 @@ class PomodoroController: WKInterfaceController {
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        //goupCircle.setHeight(goupCircle.frame.size.width) //make it square, i don't know how to get the width
+        //groupCircle.setHeight(groupCircle.frame.size.width) //make it square, i don't know how to get the width
         // Configure interface objects here.
         pomodoro.setInterfaceTimer(timer: timer,seconds: pomodoroInSecondsTime)
+        background.setGroup(group: groupCircle)
     }
     
     override func willActivate() {
@@ -54,10 +56,8 @@ class PomodoroController: WKInterfaceController {
             //is stop
             pomodoro.play(seconds: pomodoroInSecondsTime)
             btnTimer.setText("Pause")
-            
             //Fast animation
-            goupCircle.setBackgroundImageNamed("circle-")
-            goupCircle.startAnimatingWithImages(in: NSRange(location: 0, length: 100), duration: 0.5, repeatCount: 1)
+            background.startFastAnimation()
         }
         
     }
