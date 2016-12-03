@@ -15,6 +15,14 @@ class PomodoroInterfaceGroup: NSObject {
     struct framesStruct {
         var currentFrame = 0
         var max = 0
+        var first = 0
+        func percentToFrame (p:Double) -> Int {
+            print("currentFrame\(currentFrame) max\(max) first\(first) p\(p) ")
+            let dmax = Double(max)
+            let dfirst = Double(first)
+            let frameFloat = Int(round(p*(dmax - dfirst)))
+            return ( (frameFloat-1) % max ) + 1
+        }
     }
     var frames = framesStruct()
     var imageNameRoot = ""
@@ -27,6 +35,7 @@ class PomodoroInterfaceGroup: NSObject {
         groupCircle.setBackgroundImageNamed(imageNameRoot)
     }
     func startAnimationHelperWithCompletion(frameFrom:Int, frameTo: Int, duration: Double,completionHandler: @escaping () -> Void) {
+        print("startAnimationHelperWithCompletion - frameFrom: \(frameFrom) frameTo: \(frameTo) duration: \(duration)")
         let delay = DispatchTime.now() + Double(Int64((duration+0.1) *
             Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         groupCircle.startAnimatingWithImages(in: NSRange(location: frameFrom, length: frameTo), duration: duration, repeatCount: 1)
@@ -34,11 +43,20 @@ class PomodoroInterfaceGroup: NSObject {
             completionHandler()
         }
     }
+    func startAnimationPercentageProgress(frameFromPercent:Double, frameToPercent: Double, duration: Double) {
+        print("startAnimationPercentageProgress - frameFromPercent: \(frameFromPercent) frameToPercent: \(frameToPercent) duration: \(duration)")
+        let frameFrom = frames.percentToFrame(p: frameFromPercent)
+        let frameTo = frames.percentToFrame(p: frameToPercent)
+        startAnimationHelperWithCompletion(frameFrom: frameFrom, frameTo: frameTo, duration: duration, completionHandler: {()})
+    }
     func startFastAnimationWithCompletion(completionHandler: @escaping () -> Void) {
         startAnimationHelperWithCompletion(frameFrom: 0, frameTo: frames.max, duration: 0.5, completionHandler: completionHandler)
     }
     func setFrame(frame:Int) {
         startAnimationHelperWithCompletion(frameFrom: frame,frameTo: frame+1,duration: 0,completionHandler:{()})
+    }
+    func stopAnimating(){
+        groupCircle.stopAnimating()
     }
     
     

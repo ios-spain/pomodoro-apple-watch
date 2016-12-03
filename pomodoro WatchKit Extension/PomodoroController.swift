@@ -29,6 +29,10 @@ class PomodoroController: WKInterfaceController {
         // Configure interface objects here.
         pomodoro.setInterfaceTimer(timer: timer,seconds: pomodoroInSecondsTime)
         background.setGroup(group: groupCircle, totalFrames: 100, imageNameRoot: "circle-")
+        
+        background.startFastAnimationWithCompletion {
+            print ("end animation in startup")
+        }
     }
     
     override func willActivate() {
@@ -47,19 +51,19 @@ class PomodoroController: WKInterfaceController {
             //Lets pause
             pomodoro.pause()
             btnTimer.setText("Resume")
-            
+            background.stopAnimating()
         } else if(pomodoro.isPause()) {
             //Lets resume
             pomodoro.resume()
             btnTimer.setText("Pause")
         }else{
-            //is stop
+            //is stop so lets play/start
             pomodoro.play(seconds: pomodoroInSecondsTime)
             btnTimer.setText("Pause")
             //Fast animation
             background.startFastAnimationWithCompletion {
                 print ("end animation")
-                self.background.setFrame(frame: 0)
+                self.background.startAnimationPercentageProgress(frameFromPercent: 0, frameToPercent: 100, duration: self.pomodoroInSecondsTime)
             }
         }
     }
