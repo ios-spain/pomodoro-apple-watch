@@ -14,7 +14,7 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="PomodoroController" customModule="pomodoro_WatchKit_Extension">
                     <items>
-                        <group width="1" height="133" alignment="left" backgroundImage="single-99suffix" layout="vertical" id="j3i-oQ-bRh">
+                        <group width="1" height="153" alignment="left" backgroundImage="circle-99" contentMode="scaleAspectFit" layout="vertical" id="j3i-oQ-bRh">
                             <items>
                                 <timer alignment="center" verticalAlignment="center" previewedSeconds="1500" id="7Wy-fd-XdD">
                                     <fontDescription key="font" type="system" pointSize="35"/>
