@@ -40,28 +40,30 @@ class PomodoroTimer: NSObject {
     //Setters
     func setInterfaceTimer(timer: WKInterfaceTimer, seconds: Double) {
         self.timer = timer
-        self.timer.setDate(Date(timeIntervalSinceNow: seconds))
-        duration = seconds
+        initTimer(seconds: seconds)
     }
-    func play(seconds:Double) {
-        print("play")
+    func initTimer(seconds:Double) {
         self.timer.setDate(Date(timeIntervalSinceNow: seconds))
         duration = seconds
         elapsedTime = 0
+    }
+    func play(seconds:Double) {
+        print("play")
+        startTime = Date()
+        initTimer(seconds: seconds)
         self.timer.start()
         self.currentState = timerStates.play
-        startTime = Date()
     }
     func pause() {
         print("pause")
+        elapsedTime += Date().timeIntervalSince(startTime)
         self.timer.stop()
         self.currentState = timerStates.pause
-        startTime = Date()
     }
     func resume() {
         print("resume")
-        elapsedTime += Date().timeIntervalSince(startTime)
-        self.timer.setDate(Date(timeIntervalSinceNow: duration-elapsedTime))
+        startTime = Date()
+        self.timer.setDate(Date(timeIntervalSinceNow: (duration-elapsedTime) ))
         self.timer.start()
         self.currentState = timerStates.play
     }
