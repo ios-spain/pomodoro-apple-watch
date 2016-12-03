@@ -8,14 +8,16 @@
 
 import WatchKit
 import Foundation
+//import PomodoroTimer
 
 
 class PomodoroController: WKInterfaceController {
     @IBOutlet var timer: WKInterfaceTimer!
     @IBOutlet var btnTimer: WKInterfaceLabel!
-    //enum timerStates { case  }
-    var timerRunning = false
-    var timerEnded = true
+    
+    
+    var pomodoro = PomodoroTimer()
+    
     //let pomodoroInSecondsTime = TimeInterval(25*60+1)
     let pomodoroInSecondsTime: TimeInterval = 5
     
