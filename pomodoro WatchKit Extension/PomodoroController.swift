@@ -19,14 +19,14 @@ class PomodoroController: WKInterfaceController {
     var pomodoro = PomodoroTimer()
     
     //let pomodoroInSecondsTime = TimeInterval(25*60+1)
-    let pomodoroInSecondsTime: TimeInterval = 5
+    let pomodoroInSecondsTime: TimeInterval = 15
     
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
         // Configure interface objects here.
-        timer.setDate(Date(timeIntervalSinceNow: pomodoroInSecondsTime))
+        pomodoro.setInterfaceTimer(timer: timer,seconds: pomodoroInSecondsTime)
     }
     
     override func willActivate() {
@@ -41,22 +41,20 @@ class PomodoroController: WKInterfaceController {
     
     
     @IBAction func onTimerButton() {
-        // 1
-        if timerRunning {
-            timer.stop()
-            btnTimer.setText("Start")
+        if pomodoro.isPlay() {
+            //Lets pause
+            pomodoro.pause()
+            btnTimer.setText("Resume")
             
-        } else {
-            // 2
-            if timerEnded {
-                timerEnded = false
-                timer.setDate(Date(timeIntervalSinceNow: pomodoroInSecondsTime))
-            }
-            timer.start()
+        } else if(pomodoro.isPause()) {
+            //Lets resume
+            pomodoro.resume()
+            btnTimer.setText("Pause")
+        }else{
+            //is stop
+            pomodoro.play(seconds: pomodoroInSecondsTime)
             btnTimer.setText("Pause")
         }
-        // 3
-        timerRunning = !timerRunning
         
     }
 
