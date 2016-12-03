@@ -28,7 +28,7 @@ class PomodoroController: WKInterfaceController {
         //groupCircle.setHeight(groupCircle.frame.size.width) //make it square, i don't know how to get the width
         // Configure interface objects here.
         pomodoro.setInterfaceTimer(timer: timer,seconds: pomodoroInSecondsTime)
-        background.setGroup(group: groupCircle)
+        background.setGroup(group: groupCircle, totalFrames: 100, imageNameRoot: "circle-")
     }
     
     override func willActivate() {
@@ -57,9 +57,11 @@ class PomodoroController: WKInterfaceController {
             pomodoro.play(seconds: pomodoroInSecondsTime)
             btnTimer.setText("Pause")
             //Fast animation
-            background.startFastAnimation()
+            background.startFastAnimationWithCompletion {
+                print ("end animation")
+                self.background.setFrame(frame: 0)
+            }
         }
-        
     }
     @IBAction func onMenuReset() {
         pomodoro.stop()
