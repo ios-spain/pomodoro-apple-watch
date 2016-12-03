@@ -71,5 +71,7 @@ class PomodoroTimer: NSObject {
         print("stop")
         self.timer.stop()
         self.currentState = timerStates.stop
+        //Init WKInterfaceTimer with the last duration used
+        initTimer(seconds: duration)
     }
 }

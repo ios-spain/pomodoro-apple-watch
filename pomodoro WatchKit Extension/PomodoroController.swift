@@ -57,5 +57,8 @@ class PomodoroController: WKInterfaceController {
         }
         
     }
+    @IBAction func onMenuReset() {
+        pomodoro.stop()
+    }
 
 }

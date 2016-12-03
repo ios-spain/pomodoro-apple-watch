@@ -35,6 +35,15 @@
                             </items>
                         </group>
                     </items>
+                    <menu key="menu" id="rfe-8p-VJo">
+                        <items>
+                            <menuItem title="Reset" icon="repeat" id="WiP-bE-8hE">
+                                <connections>
+                                    <action selector="onMenuReset" destination="AgC-eL-Hgc" id="GvR-9r-ela"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="btnTimer" destination="lZm-O8-qsM" id="4PZ-Hk-NHf"/>
                         <outlet property="timer" destination="7Wy-fd-XdD" id="KcG-k1-FsZ"/>
