@@ -20,7 +20,7 @@ class PomodoroInterfaceGroup: NSObject {
             print("currentFrame\(currentFrame) max\(max) first\(first) p\(p) ")
             let dmax = Double(max)
             let dfirst = Double(first)
-            let frameFloat = Int(round(p*(dmax - dfirst)))
+            let frameFloat = Int(round(p*(dmax - dfirst)/100))
             return ( (frameFloat-1) % max ) + 1
         }
     }
@@ -35,6 +35,7 @@ class PomodoroInterfaceGroup: NSObject {
         groupCircle.setBackgroundImageNamed(imageNameRoot)
     }
     func startAnimationHelperWithCompletion(frameFrom:Int, frameTo: Int, duration: Double,completionHandler: @escaping () -> Void) {
+        groupCircle.setBackgroundImageNamed(imageNameRoot)
         print("startAnimationHelperWithCompletion - frameFrom: \(frameFrom) frameTo: \(frameTo) duration: \(duration)")
         let delay = DispatchTime.now() + Double(Int64((duration+0.1) *
             Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
@@ -53,7 +54,11 @@ class PomodoroInterfaceGroup: NSObject {
         startAnimationHelperWithCompletion(frameFrom: 0, frameTo: frames.max, duration: 0.5, completionHandler: completionHandler)
     }
     func setFrame(frame:Int) {
-        startAnimationHelperWithCompletion(frameFrom: frame,frameTo: frame+1,duration: 0,completionHandler:{()})
+        //startAnimationHelperWithCompletion(frameFrom: frame,frameTo: frame+1,duration: 0,completionHandler:{()})
+        groupCircle.setBackgroundImageNamed("\(imageNameRoot)\(frame)")
+    }
+    func setFramePercentage(p:Double) {
+        setFrame(frame: frames.percentToFrame(p: p))
     }
     func stopAnimating(){
         groupCircle.stopAnimating()

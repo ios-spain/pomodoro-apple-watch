@@ -20,7 +20,17 @@ class PomodoroController: WKInterfaceController {
     var background = PomodoroInterfaceGroup()
     
     //let pomodoroInSecondsTime = TimeInterval(25*60+1)
-    let pomodoroInSecondsTime: TimeInterval = 15
+    var pomodoroInSecondsTime: TimeInterval = 15
+    
+    enum pomodoroStates: Double {
+        case work = 25, restPause = 5, longRestPause = 15
+    }
+    let labelsStates = [
+        pomodoroStates.work: "Start",
+        pomodoroStates.restPause: "Rest",
+        pomodoroStates.longRestPause: "Long Rest",
+    ]
+    var currentState: pomodoroStates = pomodoroStates.work
     
     
     override func awake(withContext context: Any?) {
@@ -49,13 +59,18 @@ class PomodoroController: WKInterfaceController {
     @IBAction func onTimerButton() {
         if pomodoro.isPlay() {
             //Lets pause
-            pomodoro.pause()
+            let elapsedTime = pomodoro.pause()
+            print("elapsedTime \(elapsedTime)")
             btnTimer.setText("Resume")
             background.stopAnimating()
+            background.setFramePercentage(p:(elapsedTime*100/pomodoroInSecondsTime))
         } else if(pomodoro.isPause()) {
             //Lets resume
             pomodoro.resume()
             btnTimer.setText("Pause")
+            let elapsedTime = pomodoro.getElapsedTime()
+            let percentageElapsedTime = elapsedTime*100/pomodoroInSecondsTime
+            self.background.startAnimationPercentageProgress(frameFromPercent: percentageElapsedTime, frameToPercent: 100, duration: (pomodoroInSecondsTime - elapsedTime))
         }else{
             //is stop so lets play/start
             pomodoro.play(seconds: pomodoroInSecondsTime)
@@ -63,17 +78,30 @@ class PomodoroController: WKInterfaceController {
             //Fast animation
             background.startFastAnimationWithCompletion {
                 print ("end animation")
-                self.background.startAnimationPercentageProgress(frameFromPercent: 0, frameToPercent: 100, duration: self.pomodoroInSecondsTime)
+                self.background.startAnimationPercentageProgress(frameFromPercent: 0, frameToPercent: 100, duration: self.pomodoroInSecondsTime-1)
             }
         }
     }
     @IBAction func onMenuReset() {
         pomodoro.stop()
+        changeState(futureState: pomodoroStates.work)
+    }
+    
+    func changeState(futureState: pomodoroStates) {
+        currentState = futureState
+        pomodoroInSecondsTime = futureState.rawValue
+        pomodoro.initTimer(seconds: futureState.rawValue)
+        self.btnTimer.setText(labelsStates[futureState])
     }
     
     func onTimerFinish(){
         print("RING CONTROLER")
-        self.btnTimer.setText("Start")
+        if pomodoroStates.work == currentState {
+            changeState(futureState: pomodoroStates.restPause)
+            //TODO: Send it to backend. One pomodoro finished
+        }else{
+            changeState(futureState: pomodoroStates.work)
+        }
     }
 
 }

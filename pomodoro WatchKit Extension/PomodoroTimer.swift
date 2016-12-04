@@ -40,6 +40,9 @@ class PomodoroTimer: NSObject {
     func isPause() -> Bool {
         return isInThisState(state: timerStates.pause)
     }
+    func getElapsedTime() -> Double{
+        return elapsedTime
+    }
     
     //Setters
     //WKInterfaceTimer
@@ -70,12 +73,13 @@ class PomodoroTimer: NSObject {
         self.currentState = timerStates.play
         stopAndThenStartRealTimer(seconds: seconds)
     }
-    func pause() {
+    func pause() -> Double {
         print("pause")
         elapsedTime += Date().timeIntervalSince(startTime)
         self.timer.stop()
         self.stopRealTimer()
         self.currentState = timerStates.pause
+        return elapsedTime
     }
     func resume() {
         print("resume")
