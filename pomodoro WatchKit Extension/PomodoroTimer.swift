@@ -20,6 +20,8 @@ class PomodoroTimer: NSObject {
     var elapsedTime = 0.0
     var duration = 0.0
     
+    var stopHandler: () -> Void = {()}
+    
     override init() {
         super.init()
         //currentState = timerStates.stop
@@ -41,9 +43,10 @@ class PomodoroTimer: NSObject {
     
     //Setters
     //WKInterfaceTimer
-    func setInterfaceTimer(timer: WKInterfaceTimer, seconds: Double) {
+    func setInterfaceTimer(timer: WKInterfaceTimer, seconds: Double, completionStopHandler: @escaping () -> Void) {
         self.timer = timer
         initTimer(seconds: seconds)
+        self.stopHandler = completionStopHandler
     }
     func initTimer(seconds:Double) {
         self.timer.setDate(Date(timeIntervalSinceNow: seconds))
@@ -98,5 +101,6 @@ class PomodoroTimer: NSObject {
         print("RING RING !! \(elapsedTime)")
         self.stop()
         WKInterfaceDevice.current().play(.click)
+        self.stopHandler()
     }
 }
