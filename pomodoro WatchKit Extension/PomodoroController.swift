@@ -27,13 +27,13 @@ class PomodoroController: WKInterfaceController {
     }
     struct configState  {
         var label = ""
-        var color = ""
+        var color = UIColor(red:0.28, green:0.75, blue:0.98, alpha:1.0)
         var imageNameRoot = "circle-"
     }
     struct configStates {
-        static let work = configState(label: "Start", color: "", imageNameRoot: "circle-")
-        static let rest = configState(label: "Rest", color: "", imageNameRoot: "circle-rest-")
-        static let longRestPause = configState(label: "Long Rest", color: "", imageNameRoot: "circle-rest-")
+        static let work = configState(label: "Start", color: UIColor(red:0.28, green:0.75, blue:0.98, alpha:1.0) , imageNameRoot: "circle-")
+        static let rest = configState(label: "Rest", color: UIColor(red:0.67, green:1.00, blue:0.00, alpha:1.0), imageNameRoot: "circle-rest-")
+        static let longRestPause = configState(label: "Long Rest", color: UIColor(red:0.67, green:1.00, blue:0.00, alpha:1.0), imageNameRoot: "circle-rest-")
 
         static let getConfigByPomodoroState = {(state: pomodoroStates) -> PomodoroController.configState in
             switch state {
@@ -109,6 +109,7 @@ class PomodoroController: WKInterfaceController {
         pomodoro.initTimer(seconds: futureState.rawValue)
         background.changeImageName(imageNameRoot: configStates.getConfigByPomodoroState(futureState).imageNameRoot)
         self.btnTimer.setText(configStates.getConfigByPomodoroState(futureState).label)
+        self.btnTimer.setTextColor(configStates.getConfigByPomodoroState(futureState).color)
     }
     
     func onTimerFinish(){
