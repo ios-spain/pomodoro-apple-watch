@@ -34,6 +34,11 @@ class PomodoroInterfaceGroup: NSObject {
         self.imageNameRoot = imageNameRoot
         groupCircle.setBackgroundImageNamed(imageNameRoot)
     }
+    func changeImageName(imageNameRoot: String) {
+        self.imageNameRoot = imageNameRoot
+        groupCircle.setBackgroundImageNamed(imageNameRoot)
+    }
+    
     func startAnimationHelperWithCompletion(frameFrom:Int, frameTo: Int, duration: Double,completionHandler: @escaping () -> Void) {
         groupCircle.setBackgroundImageNamed(imageNameRoot)
         print("startAnimationHelperWithCompletion - frameFrom: \(frameFrom) frameTo: \(frameTo) duration: \(duration)")

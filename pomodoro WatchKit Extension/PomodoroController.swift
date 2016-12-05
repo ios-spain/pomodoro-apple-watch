@@ -25,11 +25,27 @@ class PomodoroController: WKInterfaceController {
     enum pomodoroStates: Double {
         case work = 25, restPause = 5, longRestPause = 15
     }
-    let labelsStates = [
-        pomodoroStates.work: "Start",
-        pomodoroStates.restPause: "Rest",
-        pomodoroStates.longRestPause: "Long Rest",
-    ]
+    struct configState  {
+        var label = ""
+        var color = ""
+        var imageNameRoot = "circle-"
+    }
+    struct configStates {
+        static let work = configState(label: "Start", color: "", imageNameRoot: "circle-")
+        static let rest = configState(label: "Rest", color: "", imageNameRoot: "circle-rest-")
+        static let longRestPause = configState(label: "Long Rest", color: "", imageNameRoot: "circle-rest-")
+
+        static let getConfigByPomodoroState = {(state: pomodoroStates) -> PomodoroController.configState in
+            switch state {
+            case pomodoroStates.work:
+                return configStates.work
+            case pomodoroStates.restPause:
+                return configStates.rest
+            case pomodoroStates.longRestPause:
+                return configStates.longRestPause
+            }
+        }
+    }
     var currentState: pomodoroStates = pomodoroStates.work
     
     
@@ -38,7 +54,7 @@ class PomodoroController: WKInterfaceController {
         //groupCircle.setHeight(groupCircle.frame.size.width) //make it square, i don't know how to get the width
         // Configure interface objects here.
         pomodoro.setInterfaceTimer(timer: timer,seconds: pomodoroInSecondsTime, completionStopHandler: self.onTimerFinish)
-        background.setGroup(group: groupCircle, totalFrames: 100, imageNameRoot: "circle-")
+        background.setGroup(group: groupCircle, totalFrames: 100, imageNameRoot: configStates.work.imageNameRoot)
         
         background.startFastAnimationWithCompletion {
             print ("end animation in startup")
@@ -91,7 +107,8 @@ class PomodoroController: WKInterfaceController {
         currentState = futureState
         pomodoroInSecondsTime = futureState.rawValue
         pomodoro.initTimer(seconds: futureState.rawValue)
-        self.btnTimer.setText(labelsStates[futureState])
+        background.changeImageName(imageNameRoot: configStates.getConfigByPomodoroState(futureState).imageNameRoot)
+        self.btnTimer.setText(configStates.getConfigByPomodoroState(futureState).label)
     }
     
     func onTimerFinish(){
