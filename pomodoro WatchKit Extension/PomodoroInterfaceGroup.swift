@@ -26,6 +26,8 @@ class PomodoroInterfaceGroup: NSObject {
     }
     var frames = framesStruct()
     var imageNameRoot = ""
+    var imagesCache = [String:UIImage]()
+    
 
     
     func setGroup (group: WKInterfaceGroup, totalFrames: Int, imageNameRoot: String) {
